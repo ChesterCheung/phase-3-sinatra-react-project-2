@@ -6,29 +6,24 @@ class StockTransactionsController < ApplicationController
    end
 
    post "/stocktransactions" do 
-      StockTransaction.create(
+      newTransaction = StockTransaction.create(
          company_name: params[:company_name],
          price: params[:price], 
          date: params[:date],
          investor_id: params[:investor_id]
       )
+      newTransaction.to_json
    end
 
-   delete "stocktransactions/"
-   
-   post "/stocktransactions" do 
-      StockTransaction.create(
-         company_name: params[:company_name],
-         price: params[:price], 
-         date: params[:date],
-         investor_id: params[:investor_id]
-      )
+   delete "stocktransactions/:id" do 
+      transaction = StockTransaction.find(params[:id])
+      transaction.destroy
    end
 
+   patch "/stocktransactions/:id" do 
+      edit = StockTransaction.find(params[:id])
+      edit.update(price: params[:price])
+      edit.to_json
+   end
 
 end
-
-t.string "company_name"
-    t.integer "price"
-    t.string "date"
-    t.integer "investor_id"
