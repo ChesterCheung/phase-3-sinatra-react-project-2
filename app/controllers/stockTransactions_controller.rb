@@ -5,6 +5,11 @@ class StockTransactionsController < ApplicationController
       transactions.to_json
    end
 
+   get "/stocktransactions/:id" do
+      transaction = StockTransaction.find(params[:id])
+      transaction.to_json
+   end
+
    post "/stocktransactions" do 
       newTransaction = StockTransaction.create(
          company_name: params[:company_name],
@@ -15,9 +20,10 @@ class StockTransactionsController < ApplicationController
       newTransaction.to_json
    end
 
-   delete "stocktransactions/:id" do 
+   delete "/stocktransactions/:id" do 
       transaction = StockTransaction.find(params[:id])
       transaction.destroy
+      transaction.to_json
    end
 
    patch "/stocktransactions/:id" do 
