@@ -2,7 +2,7 @@ class StockTransactionsController < ApplicationController
 
    get "/stocktransactions" do
       transactions = StockTransaction.all
-      transactions.to_json
+      transactions.to_json(include: [:investor])
    end
 
    get "/stocktransactions/:id" do
