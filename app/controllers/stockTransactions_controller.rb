@@ -11,13 +11,14 @@ class StockTransactionsController < ApplicationController
    end
 
    post "/stocktransactions" do 
-      newTransaction = StockTransaction.create(
-         company_name: params[:company_name],
-         price: params[:price], 
-         date: params[:date],
-         investor_id: params[:investor_id]
-      )
-      newTransaction.to_json
+      createInvestor = Investor.find_or_create_by(name: params[:investor][:name])
+      createBlog = createInvestor.stock_transactions.build(params[:stock_transactions])
+
+      if createInvestor.id && createBlog.save
+         createBlog.to_json(include:[:investor])
+      else 
+         { errors: createBlog.errors.full_messages }.to_json
+      end
    end
 
    delete "/stocktransactions/:id" do 
