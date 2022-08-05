@@ -4,6 +4,7 @@
 ### Requirements
 
 Ruby Version 2.7.4p191
+
 Sqlite Version 3.31.1
 
 ### How to use
