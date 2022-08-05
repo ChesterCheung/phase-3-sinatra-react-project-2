@@ -10,6 +10,10 @@ class InvestorsController < ApplicationController
     investors.to_json(include: [:stock_transactions])
     end
 
+    # post "/investors" do
+    #     Investor.create(params[:name]).to_json
+    # end
 
 
-end
+
+ end
