@@ -2,10 +2,12 @@
 
 
 ### Requirements
-ruby version
-sqlite version
+
+Ruby Version 2.7.4p191
+Sqlite Version 3.31.1
 
 ### How to use
+
 Fork and clone
 bundle install
 run rake db migrate
